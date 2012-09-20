@@ -92,4 +92,7 @@ define('WP_CACHE', true);
 /** We Need 128M */
 define('WP_MEMORY_LIMIT', '128M');
 
+/** Sets up WordPress vars and included files. */
+require_once(ABSPATH . 'wp-settings.php');
+
 /* That's all, stop editing! Happy blogging. */
