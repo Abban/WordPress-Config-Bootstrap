@@ -13,9 +13,9 @@
  */
 
 
-// Define Environments
+// Define Environments - may be a string or array of options for an environment
 $environments = array(
-	'local'       => '.local',
+	'local'       => array('.local', 'local.'),
 	'development' => '.dev',
 	'staging'     => 'stage.',
 	'preview'     => 'preview.',
@@ -26,13 +26,31 @@ $server_name = $_SERVER['SERVER_NAME'];
 
 foreach($environments AS $key => $env){
 
-	if(strstr($server_name, $env)){
+	if(is_array($env)){
 
-		define('ENVIRONMENT', $key);
+		foreach ($env as $option){
 
-		break;
+			if(stristr($server_name, $option)){
 
+				define('ENVIRONMENT', $key);
+				
+				break 2;
+			}
+
+		}
+
+	} else {
+
+		if(strstr($server_name, $env)){
+
+			define('ENVIRONMENT', $key);
+
+			break;
+
+		}
+		
 	}
+
 }
 
 // If no environment is set default to production
