@@ -41,7 +41,7 @@ foreach($environments AS $key => $env){
 
 	} else {
 
-		if(strstr($server_name, $env)){
+		if(stristr($server_name, $env)){
 
 			define('ENVIRONMENT', $key);
 
